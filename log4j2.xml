@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="warn" shutdownHook="disable">
+  <Properties>
+    <Property name="filename">logs/tako.log</Property>
+  </Properties>
+  <Appenders>
+    <Console name="Console" target="SYSTEM_OUT">
+      <PatternLayout pattern="%d %-5p [%t] %C{2} (%F:%L) - %m%n"/>
+    </Console>
+    <RollingRandomAccessFile name="File" fileName="${filename}"
+    	filePattern="logs/tako.log.bak">
+      <PatternLayout pattern="%m%n"/>
+      <Policies>
+        <OnStartupTriggeringPolicy />
+        <SizeBasedTriggeringPolicy size="256 MB"/>
+      </Policies>
+    </RollingRandomAccessFile>
+  </Appenders>
+  <Loggers>
+    <Logger name="com.reuters.rfa" level="warn"/>
+    <Root level="trace">
+      <AppenderRef ref="Console"/>
+    </Root>
+  </Loggers>
+</Configuration>
